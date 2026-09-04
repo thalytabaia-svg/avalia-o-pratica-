@@ -21,3 +21,114 @@
             
             <div id="extra-info" class="hidden">
                 <p
+                :root {
+    --bg-color: #f4f4f9;
+    --card-bg: #ffffff;
+    --text-color: #333333;
+    --primary-color: #e63946;
+    --btn-text: #ffffff;
+}
+
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --card-bg: #1e1e1e;
+    --text-color: #e0e0e0;
+    --primary-color: #ff4d4d;
+    --btn-text: #ffffff;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--card-bg);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    max-width: 400px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.card img {
+    width: 100%;
+    border-radius: 8px;
+    height: auto;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 1rem;
+}
+
+button {
+    background-color: var(--primary-color);
+    color: var(--btn-text);
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: opacity 0.2s;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+.hidden {
+    display: none;
+}
+// Alternar Tema Claro/Escuro
+const themeToggleBtn = document.getElementById('theme-toggle');
+
+themeToggleBtn.addEventListener('click', () => {
+    const currentTheme = document.body.getAttribute('data-theme');
+    
+    if (currentTheme === 'dark') {
+        document.body.removeAttribute('data-theme');
+        themeToggleBtn.textContent = 'Modo Escuro';
+    } else {
+        document.body.setAttribute('data-theme', 'dark');
+        themeToggleBtn.textContent = 'Modo Claro';
+    }
+});
+
+// Ação do Botão "Ver Mais" (Expande informações no próprio card)
+function toggleInfo() {
+    const extraInfo = document.getElementById('extra-info');
+    const btnReadMore = document.getElementById('btn-read-more');
+
+    if (extraInfo.classList.contains('hidden')) {
+        extraInfo.classList.remove('hidden');
+        btnReadMore.textContent = 'Ver Menos';
+    } else {
+        extraInfo.classList.add('hidden');
+        btnReadMore.textContent = 'Ver Mais';
+    }
+}
+
+// Ação do Botão "Saiba Mais" (Exibe um alerta interativo com suporte)
+function knowMore() {
+    alert("Para mais informações sobre modelos, agendamento de test-ride e fichas técnicas completas, visite a concessionária mais próxima ou entre em contato pelo nosso atendimento.");
+}
