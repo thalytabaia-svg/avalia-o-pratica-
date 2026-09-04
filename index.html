@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mundo do Vôlei</title>
+  <style>
+    /* CSS - Estilização e Temas */
+    :root {
+      --bg-color: #f4f4f9;
+      --text-color: #333333;
+      --card-bg: #ffffff;
+      --primary-color: #0056b3;
+      --button-hover: #003d80;
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #1e1e2e;
+      --text-color: #f4f4f9;
+      --card-bg: #2d2d3f;
+      --primary-color: #4da6ff;
+      --button-hover: #1a8cff;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 20px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: var(--card-bg);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--primary-color);
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-top: 15px;
+    }
+
+    .controls {
+      margin-top: 20px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      background-color: var(--primary-color);
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    button:hover {
+      background-color: var(--button-hover);
+    }
+
+    #contador {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Voleibol</h1>
+      <button id="theme-toggle">Alternar Tema</button>
+    </header>
+
+    <main>
+      <p>O voleibol é um esporte praticado em uma quadra dividida por uma rede, na qual duas equipes de seis jogadores tentam fazer a bola passar por cima da rede para tocar o chão do campo adversário.</p>
+
+      <img src="https://images.unsplash.com/photo-1592656670497-2287959083bc?q=80&w=800&auto=format&fit=crop" alt="Jogador de vôlei preparando para sacar">
+
+      <div class="controls">
+        <button id="btn-ponto">Marcar Ponto</button>
+      </div>
+
+      <p id="contador">Pontos marcados: <span id="pontos-val">0</span></p>
+    </main>
+  </div>
+
+  <script>
+    // JavaScript - Interatividade
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const btnPonto = document.getElementById('btn-ponto');
+    const pontosVal = document.getElementById('pontos-val');
+
+    let pontos = 0;
+
+    // Função para alternar entre tema claro e escuro
+    themeToggleBtn.addEventListener('click', () => {
+      const currentTheme = document.body.getAttribute('data-theme');
+      if (currentTheme === 'dark') {
+        document.body.removeAttribute('data-theme');
+      } else {
+        document.body.setAttribute('data-theme', 'dark');
+      }
+    });
+
+    // Botão funcional para contagem de pontos
+    btnPonto.addEventListener('click', () => {
+      pontos += 1;
+      pontosVal.textContent = pontos;
+    });
+  </script>
+
+</body>
+</html>
